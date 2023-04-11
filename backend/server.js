@@ -9,7 +9,7 @@ dotenv.config({ path: './.env' });
 
 // require('./database/dbConnection'); 
 
-
+app.use(express.urlencoded({extended:true}))
 app.use(express.json());
 app.use(cookieParser());
 
