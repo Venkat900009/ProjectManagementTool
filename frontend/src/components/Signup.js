@@ -64,7 +64,7 @@ const Signup = () => {
             console.log(data)
             if(res.status === 201 && data){
                 dispatch({type: "USER", payload: data});
-                navigate("/");
+                navigate("/usergallery");
                 window.location.reload();
             }        
             
@@ -108,7 +108,7 @@ const Signup = () => {
                 if(response.status === 201 && data){
                     console.log(data)
                     dispatch({type: "USER", payload: data});
-                    navigate("/")
+                    navigate("/usergallery")
                     window.location.reload();
                 }
                 else{
@@ -239,10 +239,12 @@ const Signup = () => {
                         </Container>
                     </Row>
                     <Row>
-                        <Container className='headingCont'>
+                        <Container className='headingCont1'>
                             <p className='accountTxt'>Need an account? <i className='signUpTxt' onClick={()=>setShowModal(true)}>Sign Up</i></p>
+                            <p className='accountTxt'>Back to <i className='signUpTxt' onClick={()=>navigate('/')}>Home</i></p>
                         </Container>
                     </Row>
+                    
                    </Paper>
                 </Container>
                 
@@ -313,10 +315,6 @@ const Signup = () => {
                     <Button className='saveBtn' onClick={handleAlertFormClose}>Ok</Button> 
                 </Modal.Footer>
             </Modal>
-
-
-
-
 
             {/* Alert Modal */}
 

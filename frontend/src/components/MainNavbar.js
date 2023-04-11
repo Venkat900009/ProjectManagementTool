@@ -26,7 +26,7 @@ const MainNavbar = () => {
               <Nav.Link href="#messages"><Messages/></Nav.Link>
               <Nav.Link href="#calendar"><Eventscalendar/></Nav.Link>
               <Nav.Link href="#searchMembers"><Notifications/></Nav.Link>         
-              <Nav.Link href="#searchMembers"><Profile/></Nav.Link>         
+                       
             </Nav>
           </Navbar.Collapse>
         </Container>

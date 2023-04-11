@@ -5,6 +5,8 @@ import Home from "./components/Home"
 
 import {initialState, reducer} from "../src/reducer/UseReduser"
 import Signup from "./components/Signup";
+import Landing from "./components/Landing";
+import Usergallery from "./components/Usergallery";
 
 
 export const UserContext = createContext();
@@ -19,8 +21,13 @@ function App() {
         <BrowserRouter>
             <UserContext.Provider value={{state, dispatch}}>  
                 <Routes>
-                    <Route exact path="/" element={<Home />}/>
+                    <Route exact path="/" element={<Landing />}/>
                     <Route exact path="/login" element={<Signup />}/>
+                    <Route exact path="/usergallery" element={<Usergallery />}/>
+                    <Route exact path="/home" element={<Home />}/>
+
+                    {/* <Route exact path="/landing" element={<Landing />}/> */}
+                    
                 </Routes>
             </UserContext.Provider>
         </BrowserRouter>

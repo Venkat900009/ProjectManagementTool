@@ -60,8 +60,10 @@
 .modalFooter{
     
     color: black;
-  
+    display: flex;
+    flex-direction: column;
     border-top: none;
+    
 }
 
 

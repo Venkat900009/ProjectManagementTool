@@ -7,10 +7,11 @@ const { google } = require("googleapis");
 const nodemailer = require("nodemailer");
 const { OAuth2Client } = require('google-auth-library');
 
+
 const upload = multer({ dest: 'uploads/' });
 
 const User = require('../models/userSchema');
-
+const UserProfile = require('../models/userProfile');
 
 
 
@@ -80,7 +81,7 @@ module.exports = router.post('/googleSignIn', async(req, res)=>{
     
         const payload = ticket.getPayload();
 
-        const userExist = await User.findOne({ email: payload.email });
+        const userExist = await UserProfile.findOne({ email: payload.email });
 
         if(userExist){
 
@@ -218,6 +219,48 @@ module.exports = router.post('/createNewUser', upload.single("userImage"), async
         console.log(error);
     }
 }); 
+
+module.exports = router.post('/createNewUserProfile',async(req, res)=>{
+    const {name, email,roll,year,section,skills,github,phone} = req.body;
+    console.log(req.body);
+    console.log("Touched")
+
+    if(!name || !email || !roll || !year || !section || !skills || !github || !phone){
+        return res.status(422).json({ error: "Please filled the form properly"})
+    }
+    const userExist = await UserProfile.findOne({ email });
+    try {
+        if(userExist){
+            UserProfile.findOneAndUpdate(
+                {email: email},
+                { $set: { name,email,roll,year,section,skills,github,phone}}
+            )
+            return res.status(201).json({message: "Updated Successfully"})
+        }
+        else{
+
+            const data = new UserProfile({  
+                name,
+                email,
+                roll,
+                year,
+                section,
+                skills,
+                github,
+                phone
+                
+            });
+    
+            await data.save();
+            res.status(201).json({ message: "Updated Successfully"});
+        }
+        
+    } catch (error) {
+        res.status(500).send(error.message);
+        console.log(error);
+    }
+}); 
+
 
 
 
